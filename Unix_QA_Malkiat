@@ -1,0 +1,314 @@
+
+1. BIOS 
+ BIOS stands for Basic Input/Output System 
+ Performs some system integrity checks 
+ Searches, loads, and executes the boot loader program. 
+ It looks for boot loader in floppy, cd-rom, or hard drive. You can press a key (typically F12 of F2, 
+but it depends on your system) during the BIOS startup to change the boot sequence. 
+ Once the boot loader program is detected and loaded into the memory, BIOS gives the control to it. 
+ So, in simple terms BIOS loads and executes the MBR boot loader.
+
+2. MBR
+  MBR stands for Master Boot Record. 
+ It is located in the 1st sector of the bootable disk. Typically /dev/hda, or /dev/sda 
+ MBR is less than 512 bytes in size. This has three components 1) primary boot loader info in 1st 446 bytes 2) 
+partition table info in next 64 bytes 3) mbr validation check in last 2 bytes. 
+ It contains information about GRUB (or LILO in old systems). 
+ So, in simple terms MBR loads and executes the GRUB boot loader.
+
+3. GRUB 
+ GRUB stands for Grand Unified Bootloader. 
+ If you have multiple kernel images installed on your system, you can choose which one to be executed. 
+ GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file. 
+ GRUB has the knowledge of the filesystem (the older Linux loader LILO didn’t understand filesystem). 
+ Grub configuration file is /boot/grub/grub.conf (/etc/grub.conf is a link to this). The following is sample grub.conf of CentOS. 
+ As you notice from the above info, it contains kernel and initrd image. 
+ So, in simple terms GRUB just loads and executes Kernel and initrd images.
+
+
+**************************************
+
+Q4. Linux Boot Process RHEL7
+	• The boot sequence changes in CentOS/Redhat 7 and above
+	• Systemd is the new service manager in CentOS/RHEL7 that manages the boot sequence.
+	• It is backward compatible with SysV init script used by previous version of redhat Linux including RHEL 6.
+	
+BIOS - Basic input and output settings (firmware interface) not related to OS
+	POST - Power-on-Self-test started (Check Hardware status
+
+MBR - Master Boot Record
+	Information saved in the first sector of hard disk that indicates where the GRUB2 is located so it can loaded in computer RAM.
+	
+GRUB2 - Grand unified boot loader v2
+	Loads linux kernel
+	/boot/grub2/grub.cfg
+	
+Kernel - Core of the OS
+	The Linux Kernel is a low-level systems software whose main role is to manage hardware resources for the user.
+	Loads required drivers from initrd.img
+	Starts the first OS process (systemd)
+	
+Systemd - System Daemon (PID # 1)
+	It then starts all the required processes
+	Reads - /etc/systemd/system/default.target to bring the system to run level
+Total of 7 tun-levels
+
+
+4) What is Linux Kernel?
+The Linux Kernel is a low-level systems software whose main role is to manage hardware resources for the user. It is also used to provide an interface for user-level interaction.
+
+5) What is LILO?
+LILO is a boot loader for Linux. It is used mainly to load the Linux operating system into main memory so that it can begin its operations.
+
+1) What is Linux?
+Linux is an operating system based on UNIX, and was first introduced by Linus Torvalds. It is based on the Linux Kernel, and can run on different hardware platforms manufactured by Intel, MIPS, HP, IBM, SPARC and Motorola. Another popular element in Linux is its mascot, a penguin figure named Tux.
+
+2) What is the difference between UNIX and LINUX?
+Unix originally began as a propriety operating system from Bell Laboratories, which later on spawned into different commercial versions. On the other hand, Linux is free, open source and intended as a non-propriety operating system for the masses.
+
+3) What is BASH?
+BASH is short for Bourne Again SHell. It was written by Steve Bourne as a replacement to the original Bourne Shell (represented by /bin/sh). It combines all the features from the original version of Bourne Shell, plus additional functions to make it easier and more convenient to use. It has since been adapted as the default shell for most systems running Linux.
+
+6) What is a swap space?
+A swap space is a certain amount of space used by Linux to temporarily hold some programs that are running concurrently. This happens when RAM does not have enough memory to hold all programs that are executing.
+
+8 ) What are the basic components of Linux?
+Just like any other typical operating system, Linux has all of these components: kernel, shells and GUIs, system utilities, and application program. What makes Linux advantageous over other operating system is that every aspect comes with additional features and all codes for these are downloadable for free.
+
+9) Does it help for a Linux system to have multiple desktop environments installed?
+In general, one desktop environment, like KDE or Gnome, is good enough to operate without issues. It’s all a matter of preference for the user, although the system allows switching from one environment to another. Some programs will work on one environment and not work on the other, so it could also be considered a factor in selecting which environment to use.
+
+1. How do you perform NIC teaming?
+NICteaming/bonding is used mostly in scenarios where you cannot afford to loose connectivity due to ethernet failover issues and also it has many other advantages like to distribute bandwidth, fault tolerance etc.
+
+2. What is the difference between TCP and UDP protocol? 
+TCP is a connection oriented protocol and contain the information of sender as well as receiver. Eg: HTTP.FTP, Telnet TCP is slower than UDP due to its error checking mechanism UDP protocols are connection less packets have no information to where they are going. These type of ports are generally used for broadcasting. For eg: DNS, DHCP UDP are faster
+
+3. What are the benifits of NIC Teaming?
+Load balancing Fault Tolerance Failover
+
+4. Mention all the network configuration files you would check to configure your ethernet card Show/Hide Answer
+Ans: /etc/sysconfig/network-scripts/ifcfg-eth* /etc/sysconfig/network /etc/resolv.conf /etc/nsswitch.conf
+
+5. What is the the use of /etc/resolv.conf? Show/Hide Answer
+Ans: It contains the details of nameserver i.e details of your DNS server which helps us connect to Internet
+
+6. What is the use of /etc/hosts file? Show/Hide Answer
+Ans: To map any hostname to its relevant IP
+
+7. What is the command to check all the open ports of your machine? Show/Hide Answer
+Ans: nmap localhost
+
+8. What is the command to check all the listening ports and services of your machine?
+Ans: netstat -ntlp
+
+10. What are the 6 run levels of linux? And how can you configure your script to run only when the system boots into GUI and not to any other runlevel Show/Hide Answer
+Ans: 0 power off 1 single user 2 multi user without network 3 multiuser with network 4 development purpose 5 GUI 6 Restart chkconfig --level 5 service_name on chkconfig --level 1234 service_name off
+
+11. What is a 3 way handshake protocol? Give an example of it Show/Hide Answer
+Ans: SYN - system 1 sends SYN signal to rmote system SYN-ACK - remote sysstem receives the syn signal and sends ack signal ACK - system again receives ack signal from remote system and connection is established For Example: When you ping to a machine you are sending a SYN signal which is ACK by the remote machine then it sends a SYN ACK signal back to the host machine. Then the host machine receives SYN ACK and sends the ACK signal back to confirm the same.
+
+12. What are the possible ways to check if your system is listening to port 67 Show/Hide Answer
+Ans: # nmap localhost | grep 67 # netstat -ntlp | grep 67
+
+Q:1 Why LVM is required ?
+Ans: LVM stands for Logical Volume Manager , to resize filesystem’s size online we required LVM partition in Linux. Size of LVM partition can be extended and reduced using the lvextend & lvreduce commands respectively.
+
+Q:2 How To check Memory stats and CPU stats ?
+Ans: Using ‘free’ & ‘vmstat’ command we can display the physical and virtual memory statistics respectively.With the help of ‘sar’ command we see the CPU utilization & other stats.
+
+Q:3 What does Sar provides and at which location Sar logs are stored ?
+Ans: Sar Collect, report, or save system activity information. The default version of the sar command (CPU utilization report) might be one of the first facilities the user runs to begin system activity investigation, because it monitors major system resources. If CPU utilization is near 100 percent (user + nice + system), the workload sampled is CPU-bound.
+By default log files of Sar command is located at /var/log/sa/sadd file, where the dd parameter indicates the current day.
+
+Q:4 How to increase the size of LVM partition ?
+Ans: Below are the Logical Steps : – Use the lvextend command (lvextend -L +100M /dev/<Name of the LVM Partition> , in this example we are extending the size by 100MB. – resize2fs /dev/<Name of the LVM Partition> – check the size of partition using ‘df -h’ command
+
+Q:5 How to reduce or shrink the size of LVM partition ?
+Ans: Below are the logical Steps to reduce size of LVM partition : -Umount the filesystem using umount command, -use resize2fs command , e.g resiz2fs /dev/mapper/myvg-mylv 10G -Now use the lvreduce command , e.g lvreduce -L 10G /dev/mapper/myvg-mylv
+Above Command will shrink the size & will make the filesystem size 10GB.
+
+Q:6 How to create partition from the raw disk ?
+Ans: Using fdisk utility we can create partitions from the raw disk.Below are the steps to create partition from the raw dsik : – fdisk /dev/hd* (IDE) or /dev/sd* (SCSI) – Type n to create a new partition – After creating partition , type w command to write the changes to the partition table.
+
+Q:7 Where the kernel modules are located ?
+Ans: The ‘/lib/modules/kernel-version/’ directory stores all kernel modules or compiled drivers in Linux operating system. Also with ‘lsmod’ command we can see all the installed kernel modules.
+
+Q:8 What is umask ?
+Ans: umask stands for ‘User file creation mask’, which determines the settings of a mask that controls which file permissions are set for files and directories when they are created.
+
+Q:9 How to set the umask permanently for a user?
+Ans: To set this value permanently for a user, it has to be put in the appropriate profile file which depends on the default shell of the user.
+
+Q:10 How to change the default run level in linux ?
+Ans: To change the run level we have to edit the file “/etc/inittab” and change initdefault entry ( id:5:initdefault:). Using ‘init’ command we change the run level temporary like ‘init 3’ , this command will move the system in runlevl 3.
+
+Q:11 How to share a directory using nfs ?
+Ans: To share a directory using nfs , first edit the configuration file ‘/etc/exportfs’ , add a entry like ‘/<directory-name> <ip or Network>(Options)’ and then restart the nfs service.
+
+Q:12 How to check and mount nfs share ?
+Ans: Using ‘showmount’ command we can see what directories are shared via nfs e.g ‘showmount -e <ip address of nfs server>’.Using mount command we can mount the nfs share on linux machine.
+
+Q:13 What are the default ports used for SMTP,DNS,FTP,DHCP,SSH and squid ?
+ Ans: Service Port SMTP 25 DNS 53 FTP 20 (data transfer) , 21 ( Connection established) DHCP 67/UDP(dhcp server) , 68/UDP(dhcp client) SSH 22 Squid 3128
+
+Q:14 What is Network Bonding ?
+Ans: Network bonding is the aggregation of multiple Lan cards into a single bonded interface to provide fault tolerance and high performance. Network bonding is also known as NIC Teaming.
+
+Q:15 What are the different modes of Network bonding in Linux ?
+Ans: Below are list of modes used in Network Bonding :
+balance-rr or 0 – round-robin mode for fault tolerance and load balancing. active-backup or 1 – Sets active-backup mode for fault tolerance. balance-xor or 2 – Sets an XOR (exclusive-or) mode for fault tolerance and load balancing. broadcast or 3 – Sets a broadcast mode for fault tolerance. All transmissions are sent on all slave interfaces. 802.3ad or 4 – Sets an IEEE 802.3ad dynamic link aggregation mode. Creates aggregation groups that share the same speed & duplex settings. balance-tlb or 5 – Sets a Transmit Load Balancing (TLB) mode for fault tolerance & load balancing. balance-alb or 6 – Sets an Active Load Balancing (ALB) mode for fault tolerance & load balancing.
+
+Q:16 How to check and verify the status the bond interface.
+Ans: Using the command ‘cat /proc/net/bonding/bond0’ , we can check which mode is enabled and what lan cards are used in this bond. In this example we have one only one bond interface but we can have multiple bond interface like bond1,bond2 and so on.
+
+Q:17 How to check default route and routing table ?
+Ans: Using the Commands ‘netstat -nr’ and ‘route -n’ we can see the default route and routing tables.
+
+Q:18 How to check which ports are listening in my Linux Server ?
+Ans: Use the Command ‘netstat –listen’ and ‘lsof -i’
+
+Q:19 List the services that are enabled at a particular run level in linux server ?
+Ans: With the help of command ‘chkconfig –list | grep 5:on’ we can list all the service that are enabled in run level5. For other run levels just replace 5 with the respective run level.
+
+Q:20 How to enable a service at a particular run level ?
+Ans: We can enable a service using the Command ‘chkconfig <Service-Name> on –level 3’
+
+Q:21 How to upgrade Kernel in Linux ?
+Ans: We should never upgrade Linux Kernel , always install the new New kernel using rpm command because upgrading a kenel can make your linux box in a unbootable state.
+
+Q:22 How To scan newly asssigned luns on linux box without rebooting ?
+Ans: There are two ways to scan newly assigned luns : Method:1 if sg3 rpm is installed , then run the command ‘rescan-scsi-bus.sh’ Method:2 Run the Command , echo ” – – – ” > /sys/class/scsi_host/hostX/scan
+
+Q:23 How to find WWN numbers of HBA cards in Linux Server ?
+Ans: We can find the WWN numbers of HBA cards using the command ‘systool -c fc_host -v | grep port_name’
+
+Q:24 How to add & change the Kernel parameters ?
+Ans: To Set the kernel parameters in linux , first edit the file ‘/etc/sysctl.conf’ after making the changes save the file and run the command ‘sysctl -p’ , this command will make the changes permanently without rebooting the machine.
+
+Q:25 What is Puppet Server ?
+Ans: Puppet is an open-source & enterprise software for configuration management toll in UNIX like operating system. Puppet is a IT automation software used to push configuration to its clients (puppet agents) using code. Puppet code can do a variety of tasks from installing new software, to check file permissions, or updating user accounts & lots of other tasks.
+
+Q:26 What are manifests in Puppet ?
+Ans: Manifests in Puppet are the files in which the client configuration is specified.
+
+Q:27 Which Command is used to sign requested certificates in Puppet Server ?
+Ans: ‘puppetca –sign hostname-of-agent’ in (2.X) & ‘puppet ca sign hostname-of-agent’ in (3.X)
+
+Q:28 At which location Puppet Master Stores Certificates ?
+Ans: /var/lib/puppet/ssl/ca/signed
+
+Q:29 How to find all the regular files in a directory ?
+Ans: using the command ‘find /<directory -type f’.
+
+Q:30 What is load average in a linux ?
+Ans: Load Average is defined as the average sum of the number of process waiting in the run queue and number of process currently executing over the period of 1,5 and 15 minutes. Using the ‘top’ and ‘uptime’ command we find the load average of a linux sever.
+
+10) What is the basic difference between BASH and DOS?
+The key differences between the BASH and DOS console lies in 3 areas: – BASH commands are case sensitive while DOS commands are not; – under BASH, / character is a directory separator and \ acts as an escape character. Under DOS, / serves as a command argument
+delimiter and \ is the directory separator – DOS follows a convention in naming files, which is 8 character file name followed by a dot and 3 character for the extension. BASH follows no such convention.
+
+11) What is the importance of the GNU project?
+This so-called Free software movement allows several advantages, such as the freedom to run programs for any purpose and freedom to study and modify a program to your needs. It also allows you to redistribute copies of a software to other people, as well as freedom to improve software and have it released to the public.
+
+12) Describe the root account.
+The root account is like a systems administrator account, and allows you full control of the system. Here you can create and maintain user accounts, assigning different permissions for each account. It is the default account every time you install Linux.
+
+13) What is CLI?
+CLI is short for Command Line Interface. This interface allows user to type declarative commands to instruct the computer to perform operations. CLI offers an advantage in that there is greater flexibility. However, other users who are already accustom with using GUI find it difficult to remember commands including attributes that come with it.
+
+14) What is GUI?
+GUI, or Graphical User Interface, makes use of images and icons that users click and manipulate as a way of communicating with the computer. Instead of having to remember and type commands, the use of graphical elements makes it easier to interact with the system, as well as adding more attraction through images, icons and colors.
+
+15) How do you open a command prompt when issuing a command?
+To open the default shell (which is where the command prompt can be found), press Ctrl-Alt-F1. This will provide a command line interface (CLI) from which you can run commands as needed.
+
+16) How can you find out how much memory Linux is using?
+From a command shell, use the “concatenate” command: cat /proc/meminfo for memory usage information. You should see a line starting something like: Mem: 64655360, etc. This is the total memory Linux thinks it has available to use.
+
+17) What is typical size for a swap partition under a Linux system?
+The preferred size for a swap partition is twice the amount of physical memory available on the system. If this is not possible, then the minimum size should be the same as the amount of memory installed.
+
+18) What are symbolic links?
+Symbolic links act similarly to shortcuts in Windows. Such links point to programs, files or directories. It also allows you instant access to it without having to go directly to the entire pathname.
+
+19) Does the Ctrl+Alt+Del key combination work on Linux?
+Yes, it does. Just like Windows, you can use this key combination to perform a system restart. One difference is that you won’t be getting any confirmation message and therefore, reboot is immediate.
+
+20) How do you refer to the parallel port where devices such as printers are connected?
+Whereas under Windows you refer to the parallel port as the LPT port, under Linux you refer to it as /dev/lp . LPT1, LPT2 and LPT3 would therefore be referred to as /dev/lp0, /dev/lp1, or /dev/lp2 under Linux.
+
+21) Are drives such as harddrive and floppy drives represented with drive letters?
+No. In Linux, each drive and device has different designations. For example, floppy drives are referred to as /dev/fd0 and /dev/fd1. IDE/EIDE hard drives are referred to as /dev/hda, /dev/hdb, /dev/hdc, and so forth.
+
+22) How do you change permissions under Linux?
+Assuming you are the system administrator or the owner of a file or directory, you can grant permission using the chmod command. Use + symbol to add permission or – symbol to deny permission, along with any of the following letters: u (user), g (group), o (others), a (all), r (read), w (write) and x (execute). For example the command chmod go+rw FILE1.TXT grants read and write access to the file FILE1.TXT, which is assigned to groups and others.
+
+23) In Linux, what names are assigned to the different serial ports?
+Serial ports are identified as /dev/ttyS0 to /dev/ttyS7. These are the equivalent names of COM1 to COM8 in Windows.
+
+24) How do you access partitions under Linux?
+Linux assigns numbers at the end of the drive identifier. For example, if the first IDE hard drive had three primary partitions, they would be named/numbered, /dev/hda1, /dev/hda2 and /dev/hda3.
+
+25) What are hard links?
+Hard links point directly to the physical file on disk, and not on the path name. This means that if you rename or move the original file, the link will not break, since the link is for the file itself, not the path where the file is located.
+
+26) What is the maximum length for a filename under Linux?
+Any filename can have a maximum of 255 characters. This limit does not include the path name, so therefore the entire pathname and filename could well exceed 255 characters.
+
+27)What are filenames that are preceded by a dot?
+In general, filenames that are preceded by a dot are hidden files. These files can be configuration files that hold important data or setup info. Setting these files as hidden makes it less likely to be accidentally deleted.
+
+28) Explain virtual desktop.
+This serves as an alternative to minimizing and maximizing different windows on the current desktop. Using virtual desktops, each desktop is a clean slate where you can open one or more programs. Rather than minimizing/restoring all those programs as needed, you can simply shuffle between virtual desktops with programs intact in each one.
+
+29) How do you share a program across different virtual desktops under Linux?
+To share a program across different virtual desktops, in the upper left-hand corner of a program window look for an icon that looks like a pushpin. Pressing this button will “pin” that application in place, making it appear in all virtual desktops, in the same position onscreen.
+
+30) What does a nameless (empty) directory represent?
+This empty directory name serves as the nameless base of the Linux file system. This serves as an attachment for all other directories, files, drives and devices.
+
+31) What is the pwd command?
+The pwd command is short for print working directory command. It’s counterpart in DOS is the cd command, and is used to display the current location in the directory tree.
+
+32) What are daemons?
+Daemons are services that provide several functions that may not be available under the base operating system. Its main task is to listen for service request and at the same time to act on these requests. After the service is done, it is then disconnected and waits for further requests.
+
+33) How do you switch from one desktop environment to another, such as switching from KDE to Gnome?
+Assuming you have these two environments installed, just log out from the graphical interface. Then at the Log in screen, type your login ID and password and choose which session type you wish to load. This choice will remain your default until you change it to something else.
+
+34) What are the kinds of permissions under Linux?
+There are 3 kinds of permissions under Linux: – Read: users may read the files or list the directory – Write: users may write to the file of new files to the directory – Execute: users may run the file or lookup a specific file within a directory
+
+35) How does case sensitivity affect the way you use commands?
+When we talk about case sensitivity, commands are considered identical only if every character is encoded as is, including lowercase and uppercase letters. This means that CD, cd and Cd are three different commands. Entering a command using uppercase letters, where it should be in lowercase, will produce different outputs.
+
+36) What are environmental variables?
+Environmental variables are global settings that control the shell’s function as well as that of other Linux programs. Another common term for environmental variables is global shell variables.
+
+37) What are the different modes when using vi editor?
+There are 3 modes under vi: – Command mode – this is the mode where you start in – Edit mode – this is the mode that allows you to do text editing – Ex mode – this is the mode wherein you interact with vi with instructions to process a file
+
+38) Is it possible to use shortcut for a long pathname?
+Yes, there is. A feature known as filename expansion allows you do this using the TAB key. For example, if you have a path named /home/iceman/assignments directory, you would type as follows: /ho[tab]/ice[tab]/assi[tab] . This, however, assumes that the path is unique, and that the shell you’re using supports this feature.
+
+39) What is redirection?
+Redirection is the process of directing data from one output to another. It can also be used to direct an output as an input to another process.
+
+40) What is grep command?
+grep a search command that makes use of pattern-based searching. It makes use of options and parameters that is specified along the command line and applies this pattern into searching the required file output.
+
+41) What could possibly be the problem when a command that was issued gave a different result from the last time it was used?
+One highly possible reason for getting different results from what seems to be the same command has something to do with case sensitivity issues. Since Linux is case sensitive, a command that was previously used might have been entered in a different format from the present one. For example, to lists all files in the directory, you should type the command ls, and not LS. Typing LS would either result in an error message if there is no program by that exact name exist, or may produce a different output if there is a program named LS that performs another function.
+
+42) What are the contents in /usr/local?
+It contains locally installed files. This directory actually matters in environments where files are stored on the network. Specifically, locally-installed files go to /usr/local/bin, /usr/local/lib, etc.). Another application of this directory is that it is used for software packages installed from source, or software not officially shipped with the distribution.
+
+43) How do you terminate an ongoing process?
+Every process in the system is identified by a unique process id or pid. Use the kill command followed by the pid in order to terminate that process. To terminate all process at once, use kill 0.
+
+44) How do you insert comments in the command line prompt?
+Comments are created by typing the # symbol before the actual comment text. This tells the shell to completely ignore what follows. For example: “# This is just a comment that the shell will ignore.”
+
+45) What is command grouping and how does it work?
+You can use parentheses to group commands. For example, if you want to send the current date and time along with the contents of a file named OUTPUT to a second file named MYDATES, you can apply command grouping as follows: (date cat OUTPUT) > MYDATES
