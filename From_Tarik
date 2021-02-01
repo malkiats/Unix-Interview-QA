@@ -1,0 +1,103 @@
+1- What are Vi, Ex, and Vim?
+Ex stands for EXtended. It is a line editor. The need for the ex-command line came from the early days where computers where using printing terminals instead of screens. 
+People were working with line numbers and editing individual lines as needed. Vim stands for Vi IMproved. It is an implementation of the Vi standard with many additions. 
+It is the most commonly used implementation of the standard. Most Linux distributions come with Vim already installed.
+Vi stands for Visual. It is a text editor that is an early attempt to a visual text editor.
+
+****************************
+4 How can you make a service run automatically after boot?
+systemctl enable
+
+****************************
+5 How to lock an user account?
+usermod -L
+
+****************************
+6 How to check if an user account has been locked?
+Run the command “passwd -S <UserName>”, this would show if the password has been locked or not. Otherwise, 
+grep for the username from /etc/shadow file and you could see “!” mark prefixed to the encrypted password field.
+
+****************************
+7 What command to find memory and swap usage?
+free
+
+****************************
+8 How to list and mount devices in Linux?
+df  -aTh
+findmnt
+cat /proc/self/mounts
+
+****************************
+9 How to backup or archive files in Linux 
+tar -cvf tarball_name.tar /path/to/directory
+
+****************************
+10 How to set ownership for files/directories?
+chown  chown user:user filename
+
+****************************
+11 Synchronize Time on Installed Linux
+Run the ntpdate -u <ntpserver>
+
+****************************
+4. How do you find which processes are using a particular file?
+By using lsof command in UNIX. It will list down PID of all the processes which are using a particular file.
+
+****************************
+5. How do you find which remote hosts are connecting to your host on a particular port say 10123?
+By using netstat command
+For example: execute netstat -a | grep "port" and it will list the entire hosts which are connected to this host on port 10123.
+
+****************************
+6. If one process is inserting data into your MySQL database? How will you check how many rows inserted into every second?
+By using "watch" command in UNIX
+
+****************************
+7. There is a file Unix_Test.txt which contains words "Unix". How will you replace all Unix to UNIX?
+By using SED command in UNIX
+For example: you can execute sed s/Unix/UNIX/g fileName.
+
+****************************
+8. How to check if the last command was successful in Unix?
+To check the status of last executed command in UNIX, you can check the value of an inbuilt bash variable [$?]. See the below example:
+$> echo $?
+
+****************************
+9. How to check all the running processes in Unix?
+ps –ef
+ps aux
+
+****************************
+10. What’s a PTR in DNS?
+ Pointer (PTR) record is used for reverse DNS (Domain Name System) lookup
+
+
+****************************
+39. Please explain how to enable curl on Ubuntu LAMP stack and root logging in Ubuntu?
+Answer: To enable curl on Ubuntu LAMP stack:
+Install libcurl
+Use the command: sudo/etc/init .d /apache2 restart OR sudo service apache2 restart
+To enable root logging in Ubuntu, use the command:
+
+****************************
+40. what is the size of a Swap Partition in LINUX
+Double of Ram
+
+****************************
+35. What are the full forms of FCM and GCM in Firebase?
+FCM and GCM stands for Firebase Cloud Messaging and Google Cloud Messaging respectively.
+
+****************************
+36. Few Difference between cPanel & Plesk
+As we said before, Plesk runs on both Linux and Windows Server, while cPanel is a Linux-only deal. 
+
+****************************
+37.How will you check out how much memory Linux is using 
+cat /proc/meminfo
+
+****************************
+38. What do you understand by daemons?
+Daemons are a way of extending the functionality of the base operating system. In other words, daemons 
+are services that offer several functions that might not be available in the operating system.
+The main task of a daemon is to actively listen for a service request and to act upon them at the very 
+same time. Once it completes the service, a daemon gets disconnected and waits for further requests.
