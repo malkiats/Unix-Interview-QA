@@ -1,0 +1,107 @@
+11. Which language is used in Git?
+Git is written in C. It is very fast and reduces runtimes overhead.
+
+
+12. What is SubGit?
+SubGit is an open-source, version control tool for migrating Subversions (SVN) to Git. It allows creating a writable Git mirror of a Subversion repository, which can then be used to push to Git.
+
+
+13. What is Jenkins?
+Jenkins is an open-source continuous integration server that facilitates achieving a Continuous Integration process in an automated manner. It is also capable to highlight any errors in the project in its early stages.
+
+14. What is a Virtual Private Cloud?
+Virtual Private Cloud offers the flexibility to scale and control the workloads. It provides global access to manage workloads when you connect your on-premises or remote resources to Google Cloud Platform (GCP).
+
+15. What is Chef?
+Chef comprises of –
+
+Chef Server – Also regarded as the central store for configuration data of infrastructure, and allows to dynamically drive node configuration based on data.
+Chef Node – These are referred to as clients as they run the Chef-client software.
+Chef Workstation – It is the place where users can interact with the Chef, develop and test cookbooks and recipes, and modify other configuration data.
+
+16. Tell me what is kubectl.
+It is a command-line interface to run commands against Kubernetes clusters, deploy applications, manage cluster resources, and view logs.
+
+17. How will you restrict communication between Kubernetes Pods?
+Communication between Kubernetes Pods is depending on the Container Network Interface (CNI) network plugin we are using. If it supports the Kubernetes network policy API, Kubernetes allows specifying network policies that restrict network access. Communication can be restricted based on IP addresses, ports, and/or selectors, a Kubernetes-specific feature for connecting and associating rules or components.  
+
+18. Why should you prefer Containerization to Virtualization?
+Here is why we should prefer Containerization to Virtualization –
+
+Containers ensure real-time provisioning and scalability, whereas Virtual Machines (VMs) provide slow provisioning
+Containers are lightweight than VMs
+Containers display superior performance than VMs
+Containers ensure better resource utilization than VMs
+
+19. What is the Docker hub?
+Docker Hub is a cloud-based repository of Docker. It allows users to create, test, store, and distribute container images. It helps to –
+Access public, open-source image repositories,
+Use space to create their own private repositories
+Build automated build functions, webhooks, and workgroups
+Store manually pushed images and links to Docker cloud
+
+20. What does the following command do with respect to the Amazon EC2 security groups
+ec2-create-group   CreateSecurityGroup
+
+21. What is AMI?
+AMI stands for Amazon Machine Image.
+
+22. How many buckets can you create in AWS by default?
+By default, you can create up to 100 buckets in each of your AWS accounts.
+ 
+23. In VPC with private and public subnets, database servers should ideally be launched into which subnet?
+With private and public subnets in VPC, database servers should ideally launch into private subnets.
+
+24. What is a redshift?
+Redshift is a big data warehouse product. It is fast and powerful, fully managed data warehouse service in the cloud.
+
+25. What is AWS Lambda?
+Lambda is an Amazon compute service which allows you to run code in the  AWS Cloud without managing servers.
+
+26. What are the different types of Load Balancer in AWS services?
+Two types of Load balancer are:
+Application Load Balancer
+Classic Load Balancer
+
+27. Name some of the DB engines which can be used in AWS RDS
+MS-SQL DB
+MariaDB
+MYSQL DB
+OracleDB
+PostgreDB
+
+28. What are the two most common ports used on XenApp ICA sessions? What are each used for?
+A8) - Ports 1494 (ICA/HDX) and 2598(Session Reliability)
+
+29. What free tool from Citrix will allow you to analyze your log files, profile your Citrix environment, scan for known issues and attach a log file to a Citrix support ticket.
+A15) - Citrix Insight Services or TaaS
+
+30. This command temporarily stores all the modified tracked files.
+git stash save
+
+31. What are some differences between BSON documents used in MongoDB and JSON documents in general?
+JSON (JavaScript Object Notation)—like XML, for example—is a human-readable standard used for data exchange. JSON has become the most widely used standard for data exchange on the web. JSON supports data types like booleans, numbers, strings, and arrays.
+
+BSON, however, is the binary encoding that MongoDB uses to store its documents. It is similar to JSON, but it extends JSON to support more data types, like Date. BSON documents, unlike JSON documents, are ordered. BSON usually takes less space than JSON and is faster to traverse. BSON, since it is binary, is also quicker to encode and decode.
+
+32. What are the features of Firebase?
+Hosting
+Authentication
+Real-time Database
+
+33. What is Firebase?
+Firebase is a platform which is used for building Web, IOS and Android applications.
+
+It offers:
+
+Real time database
+Different APIs
+Multiple authentication types
+and Hosting platform
+
+34. What are the different types of event types for reading data in Firebase?
+ 
+value
+child_added
+child_changed
+child_removed
