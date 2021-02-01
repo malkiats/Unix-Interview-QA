@@ -1,0 +1,44 @@
+### ZOMBIE PROCESS ###
+Let's say you one running process on system called (P1) and it is completed the execution and has to give exit status to Parent Process (P0). so let's say the parents process (P0) is on sleep mode then the (P1) will move to process table that call Zombie process until it exist in process table.
+
+### PROCESSES ###
+The Processes is any program that is running on your system.
+# ps aux - will give you the list of processes (aux)
+
+### THREAD ###
+A Thread is the unit of execution within a process. A process can have anywhere from just one thread to many threads. So when the program is running threads comes to life. Previously one process can have only one process but now one process can have multiple threads. so when process running there are certain unit of execution and each unit known as a thread. Program --> Process --> Thread (Process Explorer)
+
+### MEMORY LEAK ###
+Memory - RAM on your computer
+Leak - Loss of Memory
+
+Memory leak is not for permanent and your not going to lose your RAM.
+First thing how you gona find out this issue is Computer slowness, less response or entire system stuck.
+
+The main reason is Program holding memory but not actually using it - MEMORY LEAK.
+The proper way is when program required memory then system provides it. ut after the job done program has to return the memory back to the system.
+Check the process page and note which process ID is using more RAM.
+Garbage Collection: this program will run it will look for memory that is not in use and release it back to the system.
+
+************************************
+
+25) What are hard links? 
+Hard links point directly to the physical file on disk, and not on the path name. This means that if you rename or move the original file, the link will not break, since the link is for the file itself, not the path where the file is located. 
+
+Flags indicate that a certain property, characteristic, or feature is active or is present. Certain flags are only supported on particular filesystems and partitioning tables. The flags (on GPT) are actually 128-bit GUIDs on the GUID partitioning table. Each flag has its own GUID. 
+
+SAN vs NAS 
+SAN is a dedicated network of storage devices(can include tape drives storages, raid disk arrays etc) all working together to provide an excellent block level storage. WhileNAS is a single device/server/computing appliance, sharing its own storage over the network. 
+
+
+Q:30 What is load average in a linux? 
+Ans: Load Average is defined as the average sum of the number of process waiting in the run queue and number of process currently executing over the period of 1,5 and 15 minutes. Using the ‘top’ and ‘uptime’ command we find the load average of a linux sever. 
+
+What is an inode?
+An inode is a data structure on a filesystem on Linux and other Unix-like operating systems that stores all the information about a file except its name and its actual data. like location of file on the disk, access mode, ownership, file type etc. it's large numbers that used in index and linux kernel used inode numbers to access the content inside the file system metadata (times of last change,[2] access, modification) 
+
+Linux Permission
+Read = 4 
+Write = 2 
+Execute = 1 
+User. Group. Everyone
