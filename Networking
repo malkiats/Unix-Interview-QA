@@ -1,3 +1,132 @@
+	1. FTP - 21 -  TCP/IP
+	2. SFTP - 22 - vSFTP – SSH Secure File Transfer Protocol. SFTP (SSH File Transfer Protocol) is a secure file transfer protocol. It runs over the SSH protocol.
+	3. SNMP 161 - Simple Network Management Protocol (SNMP) is an Internet Standard protocol for collecting and organizing information about managed devices on IP networks and for modifying that information to change device behavior.
+	4. SMTP - 25 : The Simple Mail Transfer Protocol is a communication protocol for electronic mail transmission. As an Internet standard, SMTP was first defined in 1982 by RFC 821, and updated in 2008 by RFC 5321 to Extended SMTP additions, which is the protocol variety in widespread use today.
+	5. NFS - 2049 :
+	6. TFTP - 69 : Trivial File Transfer Protocol is a simple lockstep File Transfer Protocol which allows a client to get a file from or put a file onto a remote host. 
+	7. DNS - 53 :
+	8. DHCP - 67, 68 : 
+	9. NTP - 123 :
+	10. LDAP - 389, 636 :
+	11. HTTP - 80, 443 :
+	12. CURL : curl is a command-line utility for transferring data from or to a server designed to work without user interaction. With curl , you can download or upload data using one of the supported protocols including HTTP, HTTPS, SCP , SFTP , and FTP .
+	13. TELENT - 23 :
+	14. IMAP - 143 : 
+	15. POP3 - 110 :
+	16. SSH - 22 :
+	17. MySQL - 3306
+
+******************************************
+
+DHCP (Dynamic Host Configuration Protocol)
+
+	- Every Computer or device on network has to have an IP address for Communication purpose.
+	- IP is an identifier for computer or device on network.
+	- There are two ways that computer can be assigned an IP address.
+	- That could be done by using a static IP or dynamic IP.
+
+	- A Static IP where you assign the IP manually with subnet, gateway and DNS server.
+	- In large network it's bit difficult to do this manually typing work.
+
+	- Better way to assign the IP address that’s is dynamic IP.
+	- Computer get IP address automatically from DHCP server.
+
+	- In Dynamic setting computer broadcast a request for an IP on network then DHCP will assign the IP from its pool and deliver to the computer.
+	
+	- DHCP assign the IP from its scope and scope is the range of IP that DHCP server can hand out. It is customizable.
+	- Computer doesn’t own this IP. It's actually a lease to make sure DHCP doesn’t run out of IP in its scope.
+	- Address reservation
+
+
+******************************************
+Managing a DNS Server
+
+1 Understanding DNS Name Resolution
+	- computer doesn't understand the names as human do, it understands the numbers. 
+	- so in order to bridge that communication gap between computer and humans and the network engineer developed DNS (Domain name system). that resolve domain names to IP address.
+	- So if you type in web address in your computer.
+	- So let's say you type amazon.com you really don't need to type name, you can also use IP if you know.
+	- The DNS server will search through its database to find a matching IP address for that domain name and when it finds it. it will resolve that domain name to the IP address of amazon .com website.
+	- It works like phone directory so when you want to search for any number you search for the name.
+
+ISP or Resolver
+	- So let's say you search for any domain name and your system doesn't find it in its own cache memory then it will send the query to next level that is called resolvers server. It is your network provider that's call ISP (Internet Service provider)
+	- So when resolver receive your query then it will find it on its own cache memory to find IP address of that website.
+	- If it can't find it then it will send that query to next level which is the root server.
+
+Root Server
+	- The root server are the top or root of DNS hierarchy.
+	- There are 13 sets of these root servers and they are placed around the world. 
+	- Operated by 12 different organizations.
+	- Each set has their own unique IP address.
+	- Root server don’t know the IP address of your website but it does know where to send the resolver to help it find the IP address.
+	- root server will send it to the TLD, the top-level domain server for the dot com domain. 
+
+TLD (Top level domain)
+	- it contains the top-level domain name such as .com .net or .org.
+	- This particular TLD server manages the dot com domain which amazon.com  is the part of.
+	- So when TLD receive the query for the IP address for your amazon.com the TLD server is not going to know what the IP address for amazon.com
+	- Then TLD will redirect the resolver request to the next and final level authoritative name servers.
+
+Authoritative name server
+	they are responsible for knowing everything about the domain.
+	- Includes the IP Address. they are the final authority. so, when the authoritative name server receives the query from the resolver, the name server will respond with the IP address for your website. finally, the resolver will tell your computer the IP address of your website and it will retrieve your webpage.
+	- Once the resolver receive the IP address it will store it in its cache memory in case it receives another query for same domain name. So it doesn't have to go through all the process again.
+
+
+DNS PROPAGATION 
+
+DNS Propagation refers to the time for any DNS changes to transmit across the Internet. Please remember that DNS changes in general can take up to 24-48 hours to fully propagate. 
+
+
+DNS RECORDS 
+
+The root domain (also sometimes referred to as the "parent," "naked," or "apex" domain) is the primary entry for the domain without any subdomains. The NAME field typically remains blank as this would define a subdomain. This type of record should usually be an A record, with the value set to the destination IP address. Using a CNAME for the root domain can cause other DNS functions, such as MX records, to route incorrectly. It is standard practice to set the A record for the root domain to that of the "www." subdomain. 
+
+CNAME or "Canonical Name" 
+CNAME Records are used to define an alias hostname. A CNAME record takes this format:
+
+alias.domain.name IN CNAME otherhost.domain.name. 
+
+This defines alias.domain.name as an alias for the host whose canonical (standard) name is otherhost.domain.name. 
+
+A Record 
+An A record gives you the IP address of a domain. That way, users that try to go to www.example.com will get to the right IP address. An A record or "Address Record" maps a hostname to a 32-bit IPv4 address. An "A" Record takes this format (example): 
+Name TTL TYPE DATA 
+ftp.domain.com 43200 A IP Address 
+
+Media Temple DNS Zone files are written with a "wildcard" entry, that looks like this: 
+*.domain.com IN A xxx.xxx.xxx.xxx 
+
+The x's represent your particular IP address. The star takes "anything" .domain.com and points it to your server's IP address. This way, if someone mistakenly types too many or too few w's, they'll still see your website. This is also useful for setting up subdomains on your server, relieving you of the duty of adding an additional "A" record for the subdomain. 
+
+MX Record 
+Mail Exchange Record: Maps a domain name to a list of mail exchange servers for that domain. A zone can have one or more Mail Exchange (MX) records. These records point to hosts that accept mail messages on behalf of the host. A host can be an 'MX' for itself. MX records need not point to a host in the same zone. An 'MX' record takes this format: 
+
+host.domain.name IN MX 10 otherhost.domain.name. 
+IN MX 20 otherhost2.domain.name. 
+
+PTR Record / Pointer Record 
+
+Maps an IPv4 address to the canonical name for that host. Setting up a PTR record for a hostname in the in-addr.arpa. domain that corresponds to an IP address implements reverse DNS lookup for that address. For example, at the time of writing, www.icann.net has the IP address 192.0.34.164, but a PTR record maps 164.34.0.192.in-addr.arpa to its canonical name.
+
+NS Record or "Name Server Record" 
+
+Maps a domain name to a list of DNS servers authoritative for that domain. In this case, for (mt) Media Temple purposes would be: 
+
+ns1.mediatemple.net 
+ns2.mediatemple.net 
+SOA Record or "Start of Authority Record" 
+
+Specifies the DNS server providing authoritative information about an Internet domain, the email of the domain administrator, the domain serial number, and several timers relating to refreshing the zone. 
+
+TXT Record 
+
+The TXT Record allows an administrator to insert arbitrary text into a DNS record. For example, this record is used to implement the Sender Policy Framework and DomainKeys specifications.
+
+
+******************************************
+
 1) What is a Link?
 A link refers to the connectivity between two devices. It includes the type of cables and protocols used in order for one device to be able to communicate with the other.
 
