@@ -1,0 +1,109 @@
+Ext2, Ext3 and Ext4 are all file systems created for Linux. 
+Ext2: 
+ Ext2 stands for second extended file system. 
+ Ext2 file system was introduced in 1993 and Ext2 was developed by Remy Card. It was the first default file system in several Linux distro like RedHat and Debian 
+ It was to overcome limitation of legacy Ext file system 
+ Journaling feature is not available. 
+ It’s being used for normally Flash based storage media like USB Flash drive, SD Card etc… 
+ 
+Creating Ext2 File System 
+# mke2fs /dev/hdXX 
+Ext3: 
+ 
+ Ext3 stands for third extended file system. 
+ Ext3 file system was introduced in 2001 and same was integrated in Kernel 2.4.15 with journaling feature, which is to improve reliability and eliminates need to check file system after unclean shutdown. 
+ Provide facility to upgrade from Ext2 to Ext3 file systems without having to back up and restore data. 
+ 
+Creating Ext3 File System 
+# mke2fs –j /dev/hdXX OR # mkfs.ext3 /dev/hdXX 
+-j option is used for journaling. 
+
+Convert ext2 to ext3 :- 
+# umount /dev/sda2 
+# tune2fs -j /dev/sda2 
+# mount /dev/sda2 /var 
+
+Ext4: 
+ Ext4 stands for fourth extended file system. 
+ On October 2008, Ext4 as stable code were merged in the Kernel 2.6.28 which contains Ext4 file system. 
+ Ext4 file system have option to Turn Off journaling feature. Other features like Sub Directory Scalability, Multiblock Allocation, Delayed Allocation, Fast FSCK etc. 
+ Ext4, the high-anticipated Ext3 successor 
+ 
+Creating Ext4 File System 
+# mke2fs -t ext4 /dev/hdXX OR # mkfs.ext4 /dev/hdXX 
+-t option to specify the file system type. 
+
+Converting ext3 to ext4 : 
+( Warning :- Never try this live or production servers ) 
+# umount /dev/sda2 
+# tune2fs -O extents,uninit_bg,dir_index /dev/sda2 
+# e2fsck -pf /dev/sda2 
+# mount /dev/sda2 /var 
+
+
+ Managing the XFS and Btrfs File System
+ 
+ 
+- XFS is s default FS on RHEL 7 
+- Very versatile and flexible file system that allow you to work with big files and big file systems as well. 
+- It also use b-tree database, info about files stored in very fast database. 
+- The new FS is coming in RHEL that is btrfs 
+- Ext4 old FS still there. It is based on h-tree index that why it’s slow 
+ 
+  Using XFS tools 
+Couple of Logical Volumes on RHEL7 System
+
+ 
+ Creating XFS file system on it.
+
+ 
+ Extend your LV and Grow XFS file system. 
+
+ 
+Make sure your LV is mount before you grow your FS with XFS_growfs 
+
+ 
+ 
+ 
+xfs_fsr is a filesystem reorganizer, designed to be run regularly from a cron job to defragment XFS filesystems while they are mounted.
+
+ 
+How to repair XFS. Make sure your file system is unmount.
+
+
+
+Sometime the XFS repair may not work because log corrupted then use –L option. This through away log.
+ 
+
+Dealing with XFS snapshots. You can take snapshot on mounted File system in XFS but not on ext4 
+First, freeze your mounted FS so it will not be usable.
+
+ 
+
+ 
+
+ 
+Creating btrfs file system on LV
+
+ 
+Resize grow btrfs can be easily.
+
+ 
+Best feature – you can spread btrfs file system over multiple devices.
+
+ 
+Adding device into btrfs file system
+
+ 
+ 
+Balance your data on btrfs
+
+ 
+Analyze on btrfs File System
+
+ 
+Delete device from btrfs mount point
+
+ 
+Mounting btrfs FS on boot
+
